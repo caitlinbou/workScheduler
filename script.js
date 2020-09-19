@@ -1,13 +1,8 @@
 var today = moment().format("dddd, MMMM Do YYYY");
 var currentHour = moment().hours();
-console.log(currentHour);
-// (moment().format("hA"))
 // Puts date at top of page
 $("#currentDay").text(today);
-// console.log(moment('17/09/2020 12:07:02', 'DD MM YYYY HH:mm:ss').isBefore('17/09/2020 15:07:05', 'DD MM YYYY HH:mm:ss'));
-
-// DD MM YYYY hh:mm:ss
-
+//Establishing an array to put time and content on page, and to compare to currentHour for purposes of proper class addition
 var timeBlockArr = [
   {
     mHour: 09,
@@ -58,49 +53,47 @@ var timeBlockArr = [
 
 timeBlockArr.forEach(function (timeBlock) {
   var rowEl = $("<div>").addClass("row time-block");
-  var timeEl = $("<div>").addClass("col-md-2 hour");
-  var pTag = $("<p>");
-  pTag.text(`${timeBlock.hour}`);
-  timeEl.append(pTag);
+  var timeEl = $("<div>").addClass("col-md-1 hour");
+  timeEl.text(`${timeBlock.hour}`);
   rowEl.append(timeEl);
-  var textEl = $("<div>").addClass("col-md-8 description");
+  var textArea = $("<textarea>").addClass("col-md-10 description");
   if (timeBlock.mHour === currentHour) {
-    textEl.addClass("present");
+    textArea.addClass("present");
   } else if (timeBlock.mHour < currentHour) {
-    textEl.addClass("past");
+    textArea.addClass("past");
   } else {
-    textEl.addClass("future");
+    textArea.addClass("future");
   }
-  var textArea = $("<textarea>");
-  // textArea.text(`${timeBlock.content}`);
-  textEl.append(textArea);
-  rowEl.append(textEl);
-  var saveBtn = $("<div>").addClass("col-md-2 saveBtn");
-  // .attr("data-name")
-  // saveBtn.attr("btnHour")
+  textArea.val(`${timeBlock.content}`);
+  textArea.attr("id", timeBlock.mHour);
+  rowEl.append(textArea);
+  var saveBtn = $("<button>").addClass("col-md-1 saveBtn");
+  saveBtn.attr("data-hour", timeBlock.mHour);
   var floppy = $("<i>").addClass("fa fa-save");
   saveBtn.append(floppy);
-  $(".saveBtn").on("click", function (event) {
-    console.log($(this).attr("data-name"));
-    // TODO: local storage
-    localStorage.setItem("timeBlockArr", JSON.stringify());
+  rowEl.append(saveBtn);
+  $(".container").append(rowEl);
+
+  $(document).on("click", ".saveBtn", function (event) {
+    //  console.log($(this).attr("data-hour"));
+     console.log($(this).siblings())
+
+    localStorage.setItem(
+      $(this).siblings().val,
+      JSON.stringify(timeBlock.content)
+    );
     function getLocalStorage() {
       var localStorageData = JSON.parse(localStorage.getItem("timeBlockArr"));
       localStorageData.forEach(function (timeBlock) {
         // grab Val, not text
-        textArea.text(`${timeBlock.content}`);
+        textArea.val(`${timeBlock.content}`);
       });
     }
   });
-  rowEl.append(saveBtn);
-  $(".container").append(rowEl);
 });
-// $(document).on("click", ".class", functionvar) because dynamically added
-// var btnHr = $(this.attr("btnHour"))
-// attr("id") to text area
-// attr data-name
+
 // TODO: .val for retrieving "text" written into a form or an input
-// TODO: methods from moments called "isBefore, and isAfter". Look on moment.js docs for info.
+
 // TODO:use local storage (set var for array, push information to array, get information back from array)
 // TODO:have page refresh for next day?
 
@@ -142,3 +135,8 @@ timeBlockArr.forEach(function (timeBlock) {
 // append to Row
 // THIS CREATES ONE hour line
 // append to container
+// var pTag = $("<p>");
+// pTag.text(`${timeBlock.hour}`);
+// timeEl.append(pTag);
+// var textArea = $("<textarea>");
+// textEl.append(textArea);

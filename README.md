@@ -4,7 +4,7 @@ This is a simple scheduling tool to schedule out a 9am-5pm workday. I used JQUER
 
 I used Local Storage to ensure that edits to each timeblock would be saved upon browser refresh. 
 
-![screenshot with Local Storage sidebar and example](Assets\WorkDayScheduler.png)
+![screenshot with local Storage sidebar](https://github.com/caitlinbou/workScheduler/blob/master/Assets/WorkDayScheduler.png)
 
 I also used Font Awesome for button styling
 

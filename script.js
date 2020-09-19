@@ -75,42 +75,30 @@ timeBlockArr.forEach(function (timeBlock) {
   $(".container").append(rowEl);
 
   $(document).on("click", ".saveBtn", function (event) {
-    //  console.log($(this).attr("data-hour"));
-    //  console.log($(this).siblings()[1])
+  
     if($(this).attr("data-hour") == textArea.attr("id")) {
       timeBlock.content = textArea.val()
-      localStorage.setItem(textArea.val(), textArea.attr("id"), JSON.stringify(textArea.val()))
-    }
-
-    function getLocalStorage() {
-      var localStorageData = JSON.parse(localStorage.getItem(textArea.val(), textArea.attr("id")));
-      localStorageData.forEach(function (timeBlock){
-      timeBlock.content = textArea.val() 
-      });
-    }
-    // getLocalStorage()
+      localStorage.setItem(textArea.attr("id"), textArea.val(), JSON.stringify(textArea.val()))
+    } 
   });
+   
+  $("#9").val(localStorage.getItem("9"));
+  $("#10").val(localStorage.getItem("10"));
+  $("#11").val(localStorage.getItem("11"));
+  $("#12").val(localStorage.getItem("12"));
+  $("#13").val(localStorage.getItem("13"));
+  $("#14").val(localStorage.getItem("14"));
+  $("#15").val(localStorage.getItem("15"));
+  $("#16").val(localStorage.getItem("16"));
+  $("#17").val(localStorage.getItem("17"));
+  
 });
 
 
+// function getLocalStorage(){
+//   forEach($("textArea").val(localStorage.getItem(timeBlock.mHour)))
+// }
 
-
-// timeBlockArr.push(con)
-// userScores.push(user)
-// localStorage.setItem("userScores", JSON.stringify(userScores))
-// highScoresBtn.addEventListener("click", function(){
-//     scoreList.textContent = ""
-//     function getLocalStorage(){
-//         scoreList.classList.remove("hideBtn")
-//         var localStorageData = JSON.parse(localStorage.getItem("userScores"))
-//         localStorageData.forEach(function(user){
-// var pTag = document.createElement("p")
-//  pTag.textContent = `${user.initials} - ${user.score}`
-//  document.querySelector("#scoreList").appendChild(pTag)
-// })
-//     }
-//         getLocalStorage()
-// });
 // PSUEDO CODE for creating dynamic elements on the page
 
 // for each "hour" Create a Row and set appropriate class for row

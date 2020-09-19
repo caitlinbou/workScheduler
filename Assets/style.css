@@ -4,7 +4,7 @@ body {
   font-size: 16px;
   line-height: 1;
 }
-/* no changes except maybe when click to add content to present or future blue border? */
+/* no changes, add to textarea */
 textarea{
   background: transparent;
   border: none;
@@ -21,7 +21,7 @@ textarea{
   border-radius: 0;
   border-bottom: 10px solid black;
 }
-/* assign to something...middle column? */
+
 .description{
   white-space: pre-wrap;
 }
@@ -36,7 +36,7 @@ textarea{
   height: 80px;
   border-top: 1px solid white;;
 }
-/* added to html already for the hour block, and need to apply to all dynamically added rows */
+/*apply to all dynamically added rows */
 .hour {
   background-color: #ffffff;
   color: #000000;
@@ -65,7 +65,7 @@ textarea{
   background-color: #06AED5;
   color: white;
 }
-/* somehow need to apply to the buttons */
+/*apply to the font awesome button */
 .saveBtn i:hover {
   font-size: 20px;
   transition: all .3s ease-in-out;

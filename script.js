@@ -50,13 +50,14 @@ var timeBlockArr = [
     content: "",
   },
 ];
-
+// Dynamically create the rows and columns of scheduler, including styling
 timeBlockArr.forEach(function (timeBlock) {
   var rowEl = $("<div>").addClass("row time-block");
   var timeEl = $("<div>").addClass("col-md-1 hour");
   timeEl.text(`${timeBlock.hour}`);
   rowEl.append(timeEl);
   var textArea = $("<textarea>").addClass("col-md-10 description");
+  // compare time to "now" to determine color of textarea
   if (timeBlock.mHour === currentHour) {
     textArea.addClass("present");
   } else if (timeBlock.mHour < currentHour) {
@@ -73,15 +74,15 @@ timeBlockArr.forEach(function (timeBlock) {
   saveBtn.append(floppy);
   rowEl.append(saveBtn);
   $(".container").append(rowEl);
-
+// click event to trigger saving to localStorage
   $(document).on("click", ".saveBtn", function (event) {
-  
+  // set items to localStorage
     if($(this).attr("data-hour") == textArea.attr("id")) {
       timeBlock.content = textArea.val()
       localStorage.setItem(textArea.attr("id"), textArea.val(), JSON.stringify(textArea.val()))
     } 
   });
-   
+  //  get items from local storage
   $("#9").val(localStorage.getItem("9"));
   $("#10").val(localStorage.getItem("10"));
   $("#11").val(localStorage.getItem("11"));
@@ -93,31 +94,3 @@ timeBlockArr.forEach(function (timeBlock) {
   $("#17").val(localStorage.getItem("17"));
   
 });
-
-
-// function getLocalStorage(){
-//   forEach($("textArea").val(localStorage.getItem(timeBlock.mHour)))
-// }
-
-// PSUEDO CODE for creating dynamic elements on the page
-
-// for each "hour" Create a Row and set appropriate class for row
-// create a column
-// set "hour" class for column
-// set textContent to the hour
-// append to Row
-// create column for text-area
-// set class/classes for column
-// check time against current time, to {if, else if, else} to set appropriate class
-// set value of text area to the div if it has one
-// append to Row
-// create another column with the i save thing
-// assign the click event listener and the class
-// append to Row
-// THIS CREATES ONE hour line
-// append to container
-// var pTag = $("<p>");
-// pTag.text(`${timeBlock.hour}`);
-// timeEl.append(pTag);
-// var textArea = $("<textarea>");
-// textEl.append(textArea);

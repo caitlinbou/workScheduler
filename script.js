@@ -76,32 +76,25 @@ timeBlockArr.forEach(function (timeBlock) {
 
   $(document).on("click", ".saveBtn", function (event) {
     //  console.log($(this).attr("data-hour"));
-     console.log($(this).siblings())
+    //  console.log($(this).siblings()[1])
+    if($(this).attr("data-hour") == textArea.attr("id")) {
+      timeBlock.content = textArea.val()
+      localStorage.setItem(textArea.val(), textArea.attr("id"), JSON.stringify(textArea.val()))
+    }
 
-    localStorage.setItem(
-      $(this).siblings().val,
-      JSON.stringify(timeBlock.content)
-    );
     function getLocalStorage() {
-      var localStorageData = JSON.parse(localStorage.getItem("timeBlockArr"));
-      localStorageData.forEach(function (timeBlock) {
-        // grab Val, not text
-        textArea.val(`${timeBlock.content}`);
+      var localStorageData = JSON.parse(localStorage.getItem(textArea.val(), textArea.attr("id")));
+      localStorageData.forEach(function (timeBlock){
+      timeBlock.content = textArea.val() 
       });
     }
+    // getLocalStorage()
   });
 });
 
-// TODO: .val for retrieving "text" written into a form or an input
 
-// TODO:use local storage (set var for array, push information to array, get information back from array)
-// TODO:have page refresh for next day?
 
-// var initials = prompt("Game Over, final score: " + score + ". Please enter your initials for the scoreboard.")
-//         var user = {
-//         initials: initials,
-//         score: score
-//         }
+
 // timeBlockArr.push(con)
 // userScores.push(user)
 // localStorage.setItem("userScores", JSON.stringify(userScores))
